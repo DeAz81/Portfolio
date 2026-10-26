@@ -1,0 +1,502 @@
+<title>Shukrana Azami Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio of Shukrana Dedawar Azami, web developer in BTS SIO SLAM and work-study student at Accor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: one calm column of sections on a pale ground.
+   Playfulness lives in small things: marker highlight, tilted stickers, hard offset shadows on hover. */
+:root {
+  /* color */
+  --bg: #FBFBFD;
+  --card: #FFFFFF;
+  --ink: #17161F;
+  --muted: #5A586A;
+  --line: #E1E0EA;
+  --tint: #EEEDF8;
+  --accent: #D93025;
+  --on-accent: #FFFFFF;
+  --hl: #FFE066;
+  --code-bg: #17161F;
+  --code-ink: #ECEBF5;
+  --code-dim: #9390AB;
+  --code-key: #FF8F84;
+  --code-str: #FFE066;
+
+  /* type */
+  --f-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --t-xs: 0.8125rem;
+  --t-s: 0.9375rem;
+  --t-m: 1.0625rem;
+  --t-l: 1.3125rem;
+  --t-xl: clamp(1.75rem, 4.5vw, 2.5rem);
+  --t-hero: clamp(2.5rem, 8.5vw, 4.75rem);
+
+  /* space (4px base) */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 72px; --s9: 112px;
+  --radius: 14px;
+  --radius-s: 8px;
+  --shadow-hard: 5px 5px 0 var(--ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121118; --card: #1B1A24; --ink: #F2F1F8; --muted: #A9A7BC; --line: #2D2B3C; --tint: #23212F;
+    --accent: #FF7B6E; --on-accent: #1A0B09; --hl: #6B5A12;
+    --code-bg: #0A0A0F; --code-ink: #ECEBF5; --code-dim: #8E8BA6; --code-key: #FF8F84; --code-str: #FFE066;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121118; --card: #1B1A24; --ink: #F2F1F8; --muted: #A9A7BC; --line: #2D2B3C; --tint: #23212F;
+  --accent: #FF7B6E; --on-accent: #1A0B09; --hl: #6B5A12;
+  --code-bg: #0A0A0F; --code-ink: #ECEBF5; --code-dim: #8E8BA6; --code-key: #FF8F84; --code-str: #FFE066;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-m); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  background: var(--bg); z-index: 10;
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--bg); padding: var(--s2) var(--s4); z-index: 20; }
+.skip:focus { left: var(--s4); top: calc(var(--s2) + env(safe-area-inset-top, 0px)); }
+
+.wrap {
+  width: min(100%, 1120px); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: var(--s8); scroll-margin-top: 64px; }
+.kicker { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); letter-spacing: 0.04em; margin-bottom: var(--s3); }
+.kicker b { color: var(--accent); font-weight: 500; }
+h2 { font-size: var(--t-xl); font-weight: 800; margin-bottom: var(--s6); }
+mark { background: linear-gradient(transparent 58%, var(--hl) 58%, var(--hl) 92%, transparent 92%); color: inherit; padding: 0 2px; }
+
+/* header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 11;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: var(--s4); height: 56px; }
+.brand { display: inline-flex; align-items: center; gap: var(--s2); text-decoration: none; font-family: var(--f-display); font-weight: 800; flex: none; }
+.brand i {
+  width: 28px; height: 28px; display: grid; place-items: center; font-style: normal; font-size: 0.8rem;
+  background: var(--accent); color: var(--on-accent); border-radius: 8px; transform: rotate(-6deg);
+  transition: transform 0.25s;
+}
+.brand:hover i { transform: rotate(8deg) scale(1.08); }
+.top nav { margin-left: auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.top nav::-webkit-scrollbar { display: none; }
+.top ul { display: flex; gap: var(--s1); }
+.top nav a {
+  display: block; padding: var(--s2) var(--s3); border-radius: 999px; text-decoration: none;
+  font-size: var(--t-s); font-weight: 500; color: var(--muted); white-space: nowrap;
+}
+.top nav a:hover { background: var(--tint); color: var(--ink); }
+
+/* hero */
+.hero { padding-top: var(--s7); padding-bottom: var(--s8); }
+.hero .wrap { display: grid; gap: var(--s7); align-items: center; }
+.hero-copy { min-width: 0; }
+.pill {
+  display: inline-flex; align-items: center; gap: var(--s2); font-family: var(--f-mono); font-size: var(--t-xs);
+  padding: var(--s1) var(--s3); border: 1.5px solid var(--ink); border-radius: 999px; margin-bottom: var(--s5);
+}
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+h1 { font-size: var(--t-hero); font-weight: 800; letter-spacing: -0.035em; }
+.role { font-family: var(--f-display); font-weight: 500; font-size: var(--t-l); color: var(--muted); margin-top: var(--s3); }
+.value { font-size: var(--t-l); line-height: 1.45; max-width: 34ch; margin-top: var(--s5); }
+.cta { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s2); padding: 12px 22px; border-radius: 999px;
+  font-weight: 700; font-size: var(--t-m); text-decoration: none; border: 2px solid var(--ink);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn:active { transform: none; box-shadow: none; }
+
+.codecard { position: relative; min-width: 0; }
+.codecard figure { margin: 0; background: var(--code-bg); color: var(--code-ink); border-radius: var(--radius); border: 2px solid var(--ink); box-shadow: var(--shadow-hard); overflow: hidden; }
+.codecard .bar { display: flex; align-items: center; gap: var(--s2); padding: var(--s3) var(--s4); border-bottom: 1px solid #ffffff22; font-family: var(--f-mono); font-size: var(--t-xs); color: var(--code-dim); }
+.codecard .bar span { width: 10px; height: 10px; border-radius: 50%; background: #ffffff33; }
+.codecard .bar em { margin-left: var(--s2); font-style: normal; }
+.codecard pre { margin: 0; padding: var(--s4); overflow-x: auto; font-family: var(--f-mono); font-size: 0.8125rem; line-height: 1.75; }
+.k { color: var(--code-key); } .s { color: var(--code-str); } .c { color: var(--code-dim); }
+.sticker {
+  position: absolute; right: -4px; bottom: -22px; transform: rotate(5deg);
+  background: var(--hl); color: #17161F; border: 2px solid var(--ink); border-radius: var(--radius-s);
+  padding: var(--s2) var(--s3); font-family: var(--f-display); font-weight: 700; font-size: var(--t-s); line-height: 1.2;
+}
+:root[data-theme="dark"] .sticker { color: #F2F1F8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sticker { color: #F2F1F8; } }
+
+/* about */
+.about { background: var(--tint); }
+.about .wrap { display: grid; gap: var(--s6); }
+.about .text { display: grid; gap: var(--s4); max-width: 62ch; }
+.facts { display: grid; gap: var(--s3); align-content: start; font-size: var(--t-s); }
+.facts li { display: flex; justify-content: space-between; gap: var(--s4); padding-bottom: var(--s3); border-bottom: 1px dashed var(--line); }
+.facts li span:first-child { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); padding-top: 2px; }
+.facts li span:last-child { text-align: right; font-weight: 500; }
+
+/* skills */
+.skillgrid { display: grid; gap: var(--s4); }
+.group { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s5); min-width: 0; }
+.group h3 { font-size: var(--t-l); margin-bottom: var(--s1); }
+.group p { font-size: var(--t-s); color: var(--muted); margin-bottom: var(--s4); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.chip {
+  font-family: var(--f-mono); font-size: var(--t-xs); padding: 5px 11px; border-radius: 999px;
+  border: 1.5px solid var(--ink); background: var(--bg); transition: transform 0.2s, background 0.2s;
+}
+.chip:hover { transform: rotate(-3deg) translateY(-2px); background: var(--hl); }
+.langs { margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); align-items: baseline; padding: var(--s4) var(--s5); border: 1.5px dashed var(--ink); border-radius: var(--radius); }
+.langs h3 { font-size: var(--t-m); margin-right: var(--s2); }
+.langs li { font-size: var(--t-s); }
+.langs li b { font-weight: 700; }
+.langs li span { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); margin-left: var(--s1); }
+.langs ul { display: contents; }
+
+/* projects */
+.projects { display: grid; gap: var(--s5); }
+.project {
+  display: flex; flex-direction: column; min-width: 0; background: var(--card);
+  border: 1.5px solid var(--ink); border-radius: var(--radius); overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.project:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-hard); }
+.shot {
+  margin: 0; aspect-ratio: 16 / 10; max-width: 100%; display: flex; align-items: flex-end; padding: var(--s4);
+  border-bottom: 1.5px solid var(--ink); position: relative; overflow: hidden;
+}
+.shot span {
+  font-family: var(--f-mono); font-size: var(--t-xs); background: #17161F; color: #F2F1F8;
+  padding: 4px 9px; border-radius: 6px; max-width: 100%; overflow-wrap: anywhere;
+}
+/* Replace a .shot figure with: <img src="img/your-file.png" alt="..." width="1440" height="900"> and give it class="shot-img" */
+.shot-img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-bottom: 1.5px solid var(--ink); }
+.g-travel { background: linear-gradient(135deg, #FFB199 0%, #FF6F61 45%, #7A5CFF 100%); }
+.g-wine   { background: linear-gradient(160deg, #8B1E3F 0%, #3D0C24 70%); }
+.g-game   { background: repeating-linear-gradient(45deg, #2B2A44 0 18px, #34335A 18px 36px); }
+.g-linux  { background: linear-gradient(120deg, #1F2A44 0%, #0F8B8D 100%); }
+.g-assoc  { background: linear-gradient(135deg, #FFE066 0%, #FFB199 100%); }
+.project-body { padding: var(--s5); display: flex; flex-direction: column; gap: var(--s4); flex: 1; }
+.project h3 { font-size: 1.5rem; font-weight: 800; }
+.meta { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); }
+.problem { font-size: var(--t-s); }
+.problem b { font-family: var(--f-mono); font-size: var(--t-xs); font-weight: 500; color: var(--accent); display: block; margin-bottom: 2px; letter-spacing: 0.04em; text-transform: uppercase; }
+.links { display: flex; flex-wrap: wrap; gap: var(--s4); margin-top: auto; padding-top: var(--s2); font-weight: 700; font-size: var(--t-s); }
+.links a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.links a:hover { background: var(--hl); }
+
+/* timeline */
+.timeline { position: relative; display: grid; gap: var(--s6); max-width: 760px; padding-left: var(--s6); border-left: 2px solid var(--ink); margin-left: var(--s2); }
+.timeline li { position: relative; }
+.timeline li::before {
+  content: ""; position: absolute; left: calc(-1 * var(--s6) - 8px); top: 7px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--bg); border: 2.5px solid var(--ink);
+}
+.timeline li.now::before { background: var(--accent); }
+.when { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); }
+.timeline h3 { font-size: var(--t-l); margin: var(--s1) 0; }
+.where { font-weight: 500; font-size: var(--t-s); }
+.timeline p.what { font-size: var(--t-s); color: var(--muted); margin-top: var(--s2); max-width: 58ch; }
+
+/* contact */
+.contact { background: var(--code-bg); color: var(--code-ink); padding-bottom: var(--s6); }
+.contact h2 { font-size: clamp(2rem, 6vw, 3.5rem); max-width: 16ch; margin-bottom: var(--s4); }
+.contact mark { color: #17161F; }
+.contact .lead { color: var(--code-dim); max-width: 46ch; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); margin-top: var(--s6); }
+.mail code { font-family: var(--f-mono); font-size: var(--t-m); background: #ffffff14; padding: 10px 14px; border-radius: var(--radius-s); overflow-wrap: anywhere; user-select: all; }
+.mail button {
+  font: inherit; font-weight: 700; font-size: var(--t-s); cursor: pointer; padding: 10px 18px; border-radius: 999px;
+  background: var(--hl); color: #17161F; border: 2px solid #F2F1F8;
+}
+.mail button:hover { transform: rotate(-2deg); }
+.social { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); margin-top: var(--s5); }
+.social a { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-color: var(--code-key); }
+.social a:hover { background: #ffffff1a; }
+.contact :focus-visible { outline-color: var(--hl); }
+.foot { margin-top: var(--s8); padding-top: var(--s4); border-top: 1px solid #ffffff22; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2) var(--s4); font-family: var(--f-mono); font-size: var(--t-xs); color: var(--code-dim); }
+
+@media (min-width: 640px) {
+  .skillgrid { grid-template-columns: repeat(2, 1fr); }
+  .projects { grid-template-columns: repeat(2, 1fr); }
+  .project.lead { grid-column: 1 / -1; flex-direction: row; }
+  .project.lead .shot, .project.lead .shot-img { flex: 0 0 52%; aspect-ratio: auto; min-height: 280px; border-bottom: 0; border-right: 1.5px solid var(--ink); }
+}
+@media (min-width: 880px) {
+  .hero .wrap { grid-template-columns: 1.15fr 0.85fr; }
+  .about .wrap { grid-template-columns: 1.5fr 1fr; gap: var(--s8); }
+  .skillgrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 420px) {
+  .brand span { display: none; }
+  .sticker { right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Shukrana Azami, back to top"><i>SA</i><span>Shukrana</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="h-name">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="pill">Work-study student at Accor</p>
+        <h1 id="h-name">Shukrana Dedawar Azami</h1>
+        <p class="role">Web developer</p>
+        <p class="value">I build small, clear websites in <mark>HTML, CSS and PHP</mark>, and I design the SQL tables behind them so the data stays tidy.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn ghost" href="#contact">Say hello</a>
+        </div>
+      </div>
+      <div class="codecard">
+        <figure aria-label="Sample SQL query from the GILGAMESH wine bar database project">
+          <div class="bar"><span></span><span></span><span></span><em>gilgamesh_requetes.sql</em></div>
+<pre><code><span class="c">-- the 3 wines people order most</span>
+<span class="k">SELECT</span> v.nom, v.millesime,
+       <span class="k">COUNT</span>(l.id) <span class="k">AS</span> commandes
+<span class="k">FROM</span>   vin v
+<span class="k">JOIN</span>   ligne_commande l <span class="k">ON</span> l.vin_id = v.id
+<span class="k">GROUP BY</span> v.id
+<span class="k">ORDER BY</span> commandes <span class="k">DESC</span>
+<span class="k">LIMIT</span>  <span class="s">3</span>;</code></pre>
+        </figure>
+        <p class="sticker">BTS SIO SLAM<br>year 2</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <div>
+        <p class="kicker"><b>//</b> about</p>
+        <h2 id="h-about">Careful with the details, curious about the rest.</h2>
+        <div class="text">
+          <p>I'm in my second year of the BTS SIO, option SLAM, after a year of BUT Informatique (DUCES) at IUT d'Orsay. I like the part of web development where a page has to be fast to read, easy to click and still make sense when you open the source. My favourite exercises are the ones that connect a layout to a real database.</p>
+          <p>I'm doing my alternance at Accor, where I work on internal applications: writing clean code, testing it and fixing bugs next to the technical team. Alternating between school and a real team means I learn a concept in class and meet it in production soon after.</p>
+        </div>
+      </div>
+      <ul class="facts" aria-label="Quick facts">
+        <li><span>studying</span><span>BTS SIO SLAM, year 2</span></li>
+        <li><span>based in</span><span>Essonne, Île-de-France</span></li>
+        <li><span>work-study at</span><span>Accor</span></li>
+        <li><span>specialty</span><span>SLAM, software development</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="h-skills">
+    <div class="wrap">
+      <p class="kicker"><b>//</b> skills</p>
+      <h2 id="h-skills">What I reach for</h2>
+      <div class="skillgrid">
+        <article class="group">
+          <h3>Front of the house</h3>
+          <p>Pages that load fast and read well on a phone.</p>
+          <ul class="chips"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">Responsive layout</li><li class="chip">Semantic markup</li></ul>
+        </article>
+        <article class="group">
+          <h3>Back of the house</h3>
+          <p>Server-side code that talks to the database.</p>
+          <ul class="chips"><li class="chip">PHP</li><li class="chip">Forms and validation</li><li class="chip">C++</li></ul>
+        </article>
+        <article class="group">
+          <h3>Data</h3>
+          <p>Tables first, queries second.</p>
+          <ul class="chips"><li class="chip">SQL</li><li class="chip">Schema design</li><li class="chip">Joins and grouping</li><li class="chip">Inserting test data</li></ul>
+        </article>
+        <article class="group">
+          <h3>Systems and networks</h3>
+          <p>Enough admin skills to run my own test server.</p>
+          <ul class="chips"><li class="chip">Ubuntu Linux</li><li class="chip">Users and permissions</li><li class="chip">Network configuration</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="h-projects" style="background: var(--tint);">
+    <div class="wrap">
+      <p class="kicker"><b>//</b> projects</p>
+      <h2 id="h-projects">Things I've built so far</h2>
+      <div class="projects">
+
+        <article class="project lead">
+          <figure class="shot g-travel"><span>screenshot: voyages-accueil.png, 1440×900</span></figure>
+          <div class="project-body">
+            <div>
+              <p class="meta">Pair project · static site</p>
+              <h3>Travel agency website</h3>
+            </div>
+            <p class="problem"><b>Problem solved</b>A fictional agency needed destination pages that stay readable on every screen, and two people had to write the CSS without stepping on each other.</p>
+            <ul class="chips"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">Git in pairs</li></ul>
+            <p class="links"><a href="https://github.com/YOUR-HANDLE/agence-voyage">Code</a><a href="https://YOUR-HANDLE.github.io/agence-voyage/">Live site</a></p>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot g-wine"><span>screenshot: gilgamesh-schema.png, ER diagram</span></figure>
+          <div class="project-body">
+            <div>
+              <p class="meta">Database project</p>
+              <h3>GILGAMESH wine bar database</h3>
+            </div>
+            <p class="problem"><b>Problem solved</b>A wine bar needs to know what it sells and to whom. I modelled wines, customers and orders, loaded sample data, and wrote the queries that answer those questions.</p>
+            <ul class="chips"><li class="chip">SQL</li><li class="chip">Schema design</li><li class="chip">Joins</li></ul>
+            <p class="links"><a href="https://github.com/YOUR-HANDLE/gilgamesh-sql">Code</a><a href="https://github.com/YOUR-HANDLE/gilgamesh-sql#readme">Schema notes</a></p>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot g-game"><span>screenshot: jeu-cpp-niveau1.png, gameplay</span></figure>
+          <div class="project-body">
+            <div>
+              <p class="meta">Course project · C++</p>
+              <h3>Video game in C++</h3>
+            </div>
+            <p class="problem"><b>Problem solved</b>I wanted to see how a loop, a few objects and some input turn into something you can play. This game was the way to learn how to organise classes so a bug stays easy to find.</p>
+            <ul class="chips"><li class="chip">C++</li><li class="chip">Classes</li><li class="chip">Game loop</li></ul>
+            <p class="links"><a href="https://github.com/YOUR-HANDLE/jeu-cpp">Code</a></p>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot g-linux"><span>screenshot: ubuntu-utilisateurs.png, terminal</span></figure>
+          <div class="project-body">
+            <div>
+              <p class="meta">Systems lab</p>
+              <h3>Users and permissions on Ubuntu</h3>
+            </div>
+            <p class="problem"><b>Problem solved</b>Several people share one machine, and each should only touch their own files. I created the accounts and groups, set the permissions and checked that the rules held.</p>
+            <ul class="chips"><li class="chip">Ubuntu</li><li class="chip">Shell</li><li class="chip">Permissions</li></ul>
+            <p class="links"><a href="https://github.com/YOUR-HANDLE/ubuntu-utilisateurs">Lab notes</a></p>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot g-assoc"><span>screenshot: association-accueil.png, 1440×900</span></figure>
+          <div class="project-body">
+            <div>
+              <p class="meta">Static site · HTML/CSS</p>
+              <h3>Website for a fictional association</h3>
+            </div>
+            <p class="problem"><b>Problem solved</b>Volunteers and donors both land on the same site and want different things. I split the pages by audience and kept the main action one click away.</p>
+            <ul class="chips"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">Accessibility</li></ul>
+            <p class="links"><a href="https://github.com/YOUR-HANDLE/site-association">Code</a><a href="https://YOUR-HANDLE.github.io/site-association/">Live site</a></p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="h-exp">
+    <div class="wrap">
+      <p class="kicker"><b>//</b> experience</p>
+      <h2 id="h-exp">Where I've been working and learning</h2>
+      <ol class="timeline" style="list-style:none;padding-top:0;padding-bottom:0;margin-top:0;margin-bottom:0;">
+        <li class="now">
+          <p class="when">Now</p>
+          <h3>Work-study developer (alternance)</h3>
+          <p class="where">Accor</p>
+          <p class="what">Working on internal applications alongside the technical team while I study. Writing clean code, testing it and fixing bugs.</p>
+        </li>
+        <li class="now">
+          <p class="when">Second year</p>
+          <h3>BTS SIO, option SLAM</h3>
+          <p class="where">Software solutions and business applications</p>
+          <p class="what">Application development, databases and web projects, balanced with the alternance.</p>
+        </li>
+        <li>
+          <p class="when">5 weeks</p>
+          <h3>Developer intern</h3>
+          <p class="where">Accor</p>
+          <p class="what">Helped build and tune internal applications. Wrote clean code, added tests and fixed bugs, and learned the team's way of working.</p>
+        </li>
+        <li>
+          <p class="when">2025 – 2026</p>
+          <h3>DUCES, BUT Informatique</h3>
+          <p class="where">IUT d'Orsay, Université Paris-Saclay</p>
+          <p class="what">First year of the computer science degree: web, databases, C++ and Linux, mostly through small projects built in pairs.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <section style="padding-block: var(--s8) 0;" aria-labelledby="h-contact">
+      <p class="kicker"><b>//</b> contact</p>
+      <h2 id="h-contact">Got a <mark>project</mark> in mind?</h2>
+      <p class="lead">Write to me about a project, a collaboration or a question. I usually answer within two days.</p>
+      <div class="mail">
+        <code id="addr">shukranazami@gmail.com</code>
+        <button type="button" id="copy">Copy address</button>
+        <a href="mailto:shukranazami@gmail.com" class="sr" style="color:var(--code-dim);font-size:var(--t-s)">or open your mail app</a>
+      </div>
+      <nav class="social" aria-label="Social links">
+        <a href="https://github.com/YOUR-HANDLE" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/YOUR-HANDLE" rel="noopener">LinkedIn</a>
+        <a href="mailto:shukranazami@gmail.com">Email</a>
+      </nav>
+    </section>
+    <div class="foot">
+      <span>Written by hand: one HTML file, no framework.</span>
+      <span>© <span id="yr">2026</span> Shukrana Dedawar Azami</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var y = document.getElementById('yr'); if (y) y.textContent = new Date().getFullYear();
+  var btn = document.getElementById('copy'), addr = document.getElementById('addr');
+  btn.addEventListener('click', function () {
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy address'; }, 1800); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press Ctrl+C'; setTimeout(function () { btn.textContent = 'Copy address'; }, 2500);
+    };
+    try { navigator.clipboard.writeText(addr.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
